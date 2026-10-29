@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 import api from '../services/api';
 import { setAuthToken, removeAuthToken } from '../services/auth';
 
@@ -9,17 +9,20 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      setAuthToken(token);
-      fetchUser();
-    } else {
-      setLoading(false);
+  const logout = useCallback(async () => {
+    try {
+      await api.post('/api/auth/logout');
+    } catch (error) {
+      console.error('Logout API error:', error);
+    } finally {
+      localStorage.removeItem('access_token');
+      removeAuthToken();
+      setUser(null);
+      setIsAuthenticated(false);
     }
   }, []);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
       const response = await api.get('/api/auth/me');
       setUser(response.data);
@@ -30,9 +33,19 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [logout]);
 
-  const login = async (username, password) => {
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      setAuthToken(token);
+      fetchUser();
+    } else {
+      setLoading(false);
+    }
+  }, [fetchUser]);
+
+  const login = useCallback(async (username, password) => {
     try {
       const formData = new URLSearchParams();
       formData.append('username', username.trim());
@@ -56,20 +69,7 @@ export const AuthProvider = ({ children }) => {
         error: error.response?.data?.detail || 'Login failed',
       };
     }
-  };
-
-  const logout = async () => {
-    try {
-      await api.post('/api/auth/logout');
-    } catch (error) {
-      console.error('Logout API error:', error);
-    } finally {
-      localStorage.removeItem('access_token');
-      removeAuthToken();
-      setUser(null);
-      setIsAuthenticated(false);
-    }
-  };
+  }, [fetchUser]);
 
   const updateUser = (userData) => {
     setUser((prev) => {

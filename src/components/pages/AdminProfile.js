@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import {
   FiUser,
@@ -75,7 +75,7 @@ const AdminProfile = () => {
   const [passwordLoading, setPasswordLoading] = useState(false);
 
   // Fetch latest current admin profile
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       setProfileLoading(true);
       const res = await api.get('/api/auth/me');
@@ -125,11 +125,11 @@ const AdminProfile = () => {
     } finally {
       setProfileLoading(false);
     }
-  };
+  }, [updateUser, user]);
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [fetchProfile]);
 
   // Start Editing
   const handleStartEdit = () => {

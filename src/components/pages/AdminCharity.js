@@ -9,7 +9,6 @@ import {
   FiSearch,
   FiTrash2,
   FiUploadCloud,
-  FiX,
   FiCheckCircle,
   FiXCircle,
 } from "react-icons/fi";
@@ -46,7 +45,7 @@ const AdminCharity = () => {
   const [editingImageId, setEditingImageId] = useState(null);
   const [search, setSearch] = useState("");
 
-  const tr = (key, english, khmer) => {
+  const tr = useCallback((key, english, khmer) => {
     const translated = typeof t === "function" ? t(key) : "";
 
     if (
@@ -58,7 +57,7 @@ const AdminCharity = () => {
     }
 
     return isKhmer ? khmer : english;
-  };
+  }, [t, isKhmer]);
 
   const localized = (item, field, fallback = "") => {
     const selected = item?.[`${field}_${suffix}`];
@@ -74,7 +73,7 @@ const AdminCharity = () => {
     return fallback;
   };
 
-  const apiError = (error, fallback) => {
+  const apiError = useCallback((error, fallback) => {
     if (typeof getApiErrorMessage === "function") {
       return getApiErrorMessage(error, fallback);
     }
@@ -91,7 +90,7 @@ const AdminCharity = () => {
     }
 
     return error?.response?.data?.message || error?.message || fallback;
-  };
+  }, []);
 
 
   const fetchImages = useCallback(async () => {
@@ -134,7 +133,7 @@ const AdminCharity = () => {
     } finally {
       setLoadingImages(false);
     }
-  }, []);
+  }, [apiError, tr]);
 
   useEffect(() => {
     fetchImages();

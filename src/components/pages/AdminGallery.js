@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
   FiPlus,
@@ -7,12 +7,9 @@ import {
   FiImage,
   FiUploadCloud,
   FiX,
-  FiStar,
   FiSearch,
   FiFilter,
   FiEye,
-  FiCheckCircle,
-  FiXCircle,
 } from 'react-icons/fi';
 
 import api, { getApiErrorMessage } from '../../services/api';
@@ -74,15 +71,15 @@ const AdminGallery = () => {
 
   const [formData, setFormData] = useState({ ...initialForm });
 
-  const getLocalizedValue = (item, field) => {
+  const getLocalizedValue = useCallback((item, field) => {
     if (!item) return '';
     if (isKhmer) {
       return item[`${field}_km`] || item[`${field}_en`] || '';
     }
     return item[`${field}_en`] || item[`${field}_km`] || '';
-  };
+  }, [isKhmer]);
 
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     try {
       setLoading(true);
       const minDelay = new Promise((resolve) => setTimeout(resolve, 600));
@@ -97,11 +94,11 @@ const AdminGallery = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [isKhmer]);
 
   useEffect(() => {
     fetchImages();
-  }, []);
+  }, [fetchImages]);
 
   useEffect(() => {
     return () => {
@@ -257,10 +254,9 @@ const AdminGallery = () => {
   }, [images, searchTerm, selectedCategory]);
 
   // Statistics
-  const featuredCount = useMemo(() => images.filter((i) => i.is_featured).length, [images]);
   const categoriesCount = useMemo(
     () => new Set(images.map((i) => getLocalizedValue(i, 'category')).filter(Boolean)).size,
-    [images, isKhmer]
+    [images, getLocalizedValue]
   );
 
   // Table Columns

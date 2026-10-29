@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.1503b4f0.css",
-    "main.js": "/static/js/main.20904561.js",
+    "main.css": "/static/css/main.ba771765.css",
+    "main.js": "/static/js/main.3bfd18b6.js",
     "static/media/SC ACADEMY new.png": "/static/media/SC ACADEMY new.cddf74e5fdd8f2394908.png",
     "static/media/logo.webp": "/static/media/logo.ada694d1ba37e740b3f9.webp",
     "index.html": "/index.html",
-    "main.1503b4f0.css.map": "/static/css/main.1503b4f0.css.map",
-    "main.20904561.js.map": "/static/js/main.20904561.js.map"
+    "main.ba771765.css.map": "/static/css/main.ba771765.css.map",
+    "main.3bfd18b6.js.map": "/static/js/main.3bfd18b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.1503b4f0.css",
-    "static/js/main.20904561.js"
+    "static/css/main.ba771765.css",
+    "static/js/main.3bfd18b6.js"
   ]
 }

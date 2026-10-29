@@ -9,11 +9,9 @@ import {
   FiAward,
   FiCheck,
   FiEdit2,
-  FiImage,
   FiPlus,
   FiRefreshCw,
   FiSearch,
-  FiStar,
   FiTrash2,
   FiUser,
   FiX,
@@ -22,7 +20,7 @@ import {
   FiXCircle,
 } from "react-icons/fi";
 
-import api, { getApiErrorMessage } from "../../services/api";
+import api from "../../services/api";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { getImageUrl } from "../../utils/helpers";
 import AdminModal from "../common/AdminModal";
@@ -155,8 +153,7 @@ const AdminAlumni = () => {
   const [statusFilter, setStatusFilter] =
     useState("all");
 
-  const [featuredFilter, setFeaturedFilter] =
-    useState("all");
+  const featuredFilter = "all";
 
   const [editingId, setEditingId] =
     useState(null);
@@ -2148,134 +2145,6 @@ const AdminAlumni = () => {
 
       </div>
     </div>
-  );
-};
-
-/* =========================================================
-   INPUT FIELD
-========================================================= */
-
-const InputField = ({
-  label,
-  name,
-  value,
-  onChange,
-  type = "text",
-  required = false,
-  placeholder = "",
-  min,
-  max,
-  wrapperClassName = "",
-}) => {
-  return (
-    <div className={wrapperClassName}>
-
-      <label
-        htmlFor={name}
-        className="mb-1.5 block text-[11px] font-bold text-[#0D1B3E]"
-      >
-
-        {label}
-
-        {required && (
-          <span className="ml-1 text-[#C23636]">
-            *
-          </span>
-        )}
-
-      </label>
-
-      <input
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        required={required}
-        placeholder={placeholder}
-        min={min}
-        max={max}
-        className="h-[44px] w-full rounded-lg border border-[#E8EEF9] bg-[#F0F7FF] px-3 text-sm text-[#0D1B3E] outline-none transition placeholder:text-[#6B8AFF] focus:border-[#0D1B3E] focus:bg-white focus:ring-1 focus:ring-[#0D1B3E]"
-      />
-
-    </div>
-  );
-};
-
-/* =========================================================
-   TEXTAREA
-========================================================= */
-
-const TextareaField = ({
-  label,
-  name,
-  value,
-  onChange,
-  placeholder = "",
-  wrapperClassName = "",
-}) => {
-  return (
-    <div className={wrapperClassName}>
-
-      <label
-        htmlFor={name}
-        className="mb-1.5 block text-[11px] font-bold text-[#0D1B3E]"
-      >
-        {label}
-      </label>
-
-      <textarea
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        rows={5}
-        placeholder={placeholder}
-        className="min-h-[130px] w-full resize-y rounded-lg border border-[#E8EEF9] bg-[#F0F7FF] px-3 py-3 text-sm leading-6 text-[#0D1B3E] outline-none transition placeholder:text-[#6B8AFF] focus:border-[#0D1B3E] focus:bg-white focus:ring-1 focus:ring-[#0D1B3E]"
-      />
-
-    </div>
-  );
-};
-
-/* =========================================================
-   CHECKBOX
-========================================================= */
-
-const CheckboxField = ({
-  label,
-  name,
-  checked,
-  onChange,
-}) => {
-  return (
-    <label
-      htmlFor={name}
-      className="flex cursor-pointer items-center justify-between gap-4"
-    >
-
-      <span className="text-xs font-bold text-[#0D1B3E]">
-        {label}
-      </span>
-
-      <span className="relative inline-flex">
-
-        <input
-          id={name}
-          name={name}
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-          className="peer sr-only"
-        />
-
-        <span className="h-6 w-11 rounded-full bg-[#E8EEF9] transition peer-checked:bg-[#0D1B3E]" />
-
-        <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white shadow-sm transition peer-checked:translate-x-5" />
-
-      </span>
-
-    </label>
   );
 };
 
