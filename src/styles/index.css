@@ -1,0 +1,545 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =====================================================
+   BASE
+===================================================== */
+
+@layer base {
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+
+    background: #f4f7fb;
+    color: #0f172a;
+
+    font-family:
+      'Inter',
+      'Kantumruy Pro',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
+
+    font-size: 1rem;
+    line-height: 1.7;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+
+}
+
+
+/* =====================================================
+   LANGUAGE FONTS
+===================================================== */
+
+html[lang='en'],
+html[lang='en'] body {
+  font-family:
+    'Inter',
+    'Battambang',
+    sans-serif;
+}
+
+
+html[lang='km'],
+html[lang='km'] body,
+html[lang='km'] #root {
+  font-family:
+    'Kantumruy Pro',
+    sans-serif;
+}
+
+
+.font-english {
+  font-family:
+    'Inter',
+    'Battambang',
+    sans-serif !important;
+}
+
+
+.font-khmer {
+  font-family:
+    'Inter',
+    'Dangrek',
+    sans-serif !important;
+}
+
+html[lang='km'] .font-sans {
+  font-family:
+    'Inter',
+    'Dangrek',
+    sans-serif !important;
+}
+
+/* Prevent page-level utilities from replacing the selected Khmer font. */
+html[lang='km'] body #root,
+html[lang='km'] body #root * {
+  font-family:
+    'Kantumruy Pro',
+    sans-serif !important;
+}
+
+html[lang='km'] body #root {
+  font-weight: 400;
+}
+
+html[lang='km'] body #root p,
+html[lang='km'] body #root span,
+html[lang='km'] body #root label,
+html[lang='km'] body #root input,
+html[lang='km'] body #root textarea,
+html[lang='km'] body #root select,
+html[lang='km'] body #root option {
+  font-weight: 400;
+}
+
+html[lang='km'] body #root h1,
+html[lang='km'] body #root h2,
+html[lang='km'] body #root h3,
+html[lang='km'] body #root h4,
+html[lang='km'] body #root h5,
+html[lang='km'] body #root h6,
+html[lang='km'] body #root strong,
+html[lang='km'] body #root b,
+html[lang='km'] body #root .font-bold,
+html[lang='km'] body #root .font-semibold {
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   ADMIN COMPONENTS
+===================================================== */
+
+@layer components {
+
+  .admin-card {
+    @apply
+      bg-white
+      rounded-2xl
+      border
+      border-slate-200/80
+      shadow-sm
+      hover:shadow-xl
+      hover:shadow-slate-900/5
+      transition-all
+      duration-300;
+  }
+
+
+  .admin-btn-primary {
+    @apply
+      bg-blue-900
+      text-white
+      px-5
+      py-2.5
+      rounded-xl
+      font-semibold
+      hover:bg-blue-800
+      transition-all
+      duration-200
+      shadow-sm
+      hover:-translate-y-0.5
+      hover:shadow-lg
+      focus:outline-none
+      focus:ring-4
+      focus:ring-blue-900/15;
+  }
+
+
+  .admin-btn-secondary {
+    @apply
+      bg-gray-100
+      text-gray-700
+      px-5
+      py-2.5
+      rounded-xl
+      font-semibold
+      hover:bg-gray-200
+      transition-all
+      duration-200
+      border
+      border-gray-200
+      focus:outline-none
+      focus:ring-4
+      focus:ring-slate-400/15;
+  }
+
+
+  .admin-btn-success {
+    @apply
+      bg-green-600
+      text-white
+      px-5
+      py-2.5
+      rounded-xl
+      font-semibold
+      hover:bg-green-700
+      transition-all
+      duration-200;
+  }
+
+
+  .admin-btn-danger {
+    @apply
+      bg-red-600
+      text-white
+      px-5
+      py-2.5
+      rounded-xl
+      font-semibold
+      hover:bg-red-700
+      transition-all
+      duration-200;
+  }
+
+
+  .admin-btn-warning {
+    @apply
+      bg-yellow-500
+      text-white
+      px-5
+      py-2.5
+      rounded-xl
+      font-semibold
+      hover:bg-yellow-600
+      transition-all
+      duration-200;
+  }
+
+
+  .admin-input {
+    @apply
+      w-full
+      px-4
+      py-3
+      border
+      border-blue-200
+      rounded-xl
+      focus:outline-none
+      focus:ring-4
+      focus:ring-blue-900/20
+      focus:border-blue-900
+      transition-all
+      duration-200
+      bg-white
+      text-sm
+      text-slate-800
+      placeholder:text-slate-400
+      shadow-sm;
+  }
+
+
+  .admin-label {
+    @apply
+      block
+      text-sm
+      font-semibold
+      text-slate-700
+      mb-1.5;
+  }
+
+
+  .admin-table {
+    @apply
+      min-w-full
+      divide-y
+      divide-blue-100;
+  }
+
+
+  .admin-table th {
+    @apply
+      px-6
+      py-3.5
+      bg-slate-50
+      text-left
+      text-xs
+      font-bold
+      text-slate-500
+      uppercase
+      tracking-wider;
+  }
+
+
+  .admin-table td {
+    @apply
+      px-6
+      py-4
+      whitespace-nowrap
+      text-sm
+      text-slate-700;
+  }
+
+
+  .admin-table tr {
+    @apply
+      hover:bg-blue-50/60
+      transition-colors
+      duration-150;
+  }
+
+
+  .admin-table tbody tr {
+    @apply
+      border-b
+      border-blue-50;
+  }
+
+
+  .admin-table tbody tr:last-child {
+    @apply
+      border-b-0;
+  }
+
+
+  .container-custom {
+    @apply
+      container
+      mx-auto
+      px-4
+      sm:px-6
+      lg:px-8;
+  }
+
+
+  .gradient-text {
+    @apply
+      bg-gradient-to-r
+      from-red-400
+      to-red-600
+      bg-clip-text
+      text-transparent;
+  }
+
+
+  .card-hover {
+    @apply
+      transition-all
+      duration-300
+      hover:shadow-xl
+      hover:-translate-y-2;
+  }
+
+}
+
+
+/* =====================================================
+   CODE FONT
+===================================================== */
+
+code {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Courier New',
+    monospace;
+}
+
+
+/* =====================================================
+   CUSTOM SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #0B1849;
+  border-radius: 4px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C0392B;
+}
+
+
+/* =====================================================
+   READABILITY
+===================================================== */
+
+[class*="text-[7px]"] {
+  font-size: 10px !important;
+}
+
+[class*="text-[8px]"] {
+  font-size: 11px !important;
+}
+
+[class*="text-[9px]"] {
+  font-size: 12px !important;
+}
+
+[class*="text-[10px]"] {
+  font-size: 13px !important;
+}
+
+[class*="text-[11px]"] {
+  font-size: 14px !important;
+}
+
+[class*="text-[12px]"] {
+  font-size: 15px !important;
+}
+
+[class*="text-[13px]"] {
+  font-size: 15px !important;
+}
+
+[class*="text-[14px]"] {
+  font-size: 16px !important;
+}
+
+[class*="text-[15px]"] {
+  font-size: 17px !important;
+}
+
+
+/* =====================================================
+   KHMER TYPOGRAPHY
+===================================================== */
+
+html[lang='km'] body {
+  line-height: 1.8;
+}
+
+
+html[lang='km'] button,
+html[lang='km'] input,
+html[lang='km'] textarea,
+html[lang='km'] select {
+  font-family:
+    'Battambang',
+    sans-serif;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes slideUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes adminLoaderSpin {
+  to { transform: rotate(360deg); }
+}
+
+.admin-loader-ring {
+  border: 4px solid #dbeafe;
+  border-top-color: #1e3a8a;
+  border-right-color: #ef4444;
+  border-radius: 9999px;
+  animation: adminLoaderSpin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-loader-ring {
+    animation-duration: 2.5s;
+  }
+}
+
+/* Unified styling for native controls used by legacy admin pages. */
+main input:not([type='checkbox']):not([type='radio']):not([type='file']),
+main select,
+main textarea {
+  border-color: #dbe3ef;
+  border-radius: 0.75rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+main input:not([type='checkbox']):not([type='radio']):not([type='file']):focus,
+main select:focus,
+main textarea:focus {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 0.1);
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgb(59 130 246 / 0.35);
+  outline-offset: 2px;
+}
+
+.Toastify__toast {
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem !important;
+  box-shadow: 0 18px 45px rgb(15 23 42 / 0.14) !important;
+}
+
+.Toastify__toast-body {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+::selection {
+  background: rgb(37 99 235 / 0.2);
+  color: #0f172a;
+}

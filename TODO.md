@@ -1,0 +1,7 @@
+- [x] Review current API client setup in `src/services/api.js`
+- [x] Scan all frontend admin pages/services for hardcoded backend URLs or direct fetch/axios usage outside shared API client
+- [x] Fix API integration to consistently use `src/services/api.js` without changing UI
+- [x] Verify auth flow: login, JWT bearer attachment, logout, protected pages behavior in code
+- [x] Verify endpoint paths match backend routers
+- [ ] Run `npm run build` and confirm result
+- [ ] Report changed files and remaining issues

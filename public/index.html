@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- PNG Logo -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta name="theme-color" content="#1a365d" />
+
+  <title>SC Academy Admin</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & Kantumruy Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    html,
+    body,
+    #root {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f8fafc;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1a365d;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2a4a7f;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    /*
+     * Important:
+     * This only discourages casual users.
+     * It cannot completely disable browser DevTools or Network.
+     */
+
+    // Disable right click
+    document.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
+    });
+
+    // Disable common DevTools shortcuts
+    document.addEventListener("keydown", function (event) {
+      const key =
+        typeof event.key === "string"
+          ? event.key.toUpperCase()
+          : "";
+
+      // Disable F12
+      if (event.key === "F12") {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      // Disable Ctrl + Shift + I
+      if (
+        event.ctrlKey &&
+        event.shiftKey &&
+        key === "I"
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      // Disable Ctrl + Shift + J
+      if (
+        event.ctrlKey &&
+        event.shiftKey &&
+        key === "J"
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      // Disable Ctrl + Shift + C
+      if (
+        event.ctrlKey &&
+        event.shiftKey &&
+        key === "C"
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      // Disable Ctrl + U
+      if (
+        event.ctrlKey &&
+        key === "U"
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+
+      // Disable Ctrl + S
+      if (
+        event.ctrlKey &&
+        key === "S"
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+    });
+
+    // Optional DevTools detection
+    let devToolsOpened = false;
+    const devToolsThreshold = 180;
+
+    setInterval(function () {
+      const widthDifference =
+        window.outerWidth - window.innerWidth;
+
+      const heightDifference =
+        window.outerHeight - window.innerHeight;
+
+      const isDevToolsOpened =
+        widthDifference > devToolsThreshold ||
+        heightDifference > devToolsThreshold;
+
+      if (isDevToolsOpened && !devToolsOpened) {
+        devToolsOpened = true;
+
+        console.clear();
+
+        console.log(
+          "%cSC Academy Admin",
+          "font-size: 30px; font-weight: bold; color: #1a365d;"
+        );
+
+        console.log(
+          "%cUnauthorized access is not allowed.",
+          "font-size: 16px; color: red;"
+        );
+      }
+
+      if (!isDevToolsOpened) {
+        devToolsOpened = false;
+      }
+    }, 1000);
+
+    // Clear console periodically
+    setInterval(function () {
+      console.clear();
+    }, 3000);
+  </script>
+</body>
+</html>
